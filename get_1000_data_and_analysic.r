@@ -34,6 +34,8 @@ poke_sumary
 
 
 #use package
+
+
 library(tidyr)
 library(dplyr)
 library(ggplot2)
@@ -84,7 +86,7 @@ ggplot(plotdata,
        title  = "A bar plot for Species")
 
 
-
+#========================================================================================================
 # Define a function to generate a random name
 generateRandomName <- function(length) {
   vowels <- c("a", "e", "i", "o", "u")
@@ -107,4 +109,44 @@ randomNames <- replicate(10000, generateRandomName(5))
 
 # Print the first 10 names
 print(head(randomNames))
+
+#======================================================================================================
+set.seed(42)
+
+# Generate random names, surnames, ages, sexes, first names, and local governments:
+# Create empty vectors to store the generated data
+names <- c()
+surnames <- c()
+ages <- c()
+sexes <- c()
+first_names <- c()
+local_govt <- c()
+
+# Generate 10,000 individuals' data
+for (i in 1:10000) {
+  # Generate random name
+  name <- faker::faker_name()
+  names <- c(names, name)
+  
+  # Extract first name and surname
+  name_parts <- strsplit(name, " ")
+  first_name <- name_parts[[1]][1]
+  surname <- name_parts[[1]][2]
+  first_names <- c(first_names, first_name)
+  surnames <- c(surnames, surname)
+  
+  # Generate random age between 18 and 65
+  age <- sample(18:65, 1)
+  ages <- c(ages, age)
+  
+  # Generate random sex (male or female)
+  sex <- sample(c("Male", "Female"), 1)
+  sexes <- c(sexes, sex)
+  
+  # Generate random local government
+  local_gov <- faker::faker_address()$city
+  local_govt <- c(local_govt, local_gov)
+}
+#=====================================================================================
+
 
