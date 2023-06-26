@@ -16,6 +16,8 @@ rm(list=ls())
 
 Mini_Project_stat <- read.csv("pokemon.csv",header=TRUE, sep = ",")
 
+new_ass<- read.csv("assignment2.csv", header = TRUE, sep = ",")
+
 # let views our data in a  data frame formed from the csv file
 view <- View(Mini_Project_stat)
 #=====================================================================================================================
@@ -23,15 +25,21 @@ view <- View(Mini_Project_stat)
 pokemone_head <- head(Mini_Project_stat)
 pokemone_head
 
+new_ass_head <- head(Mini_Project_stat)
+new_ass_head
 #displaying the tail
 pokemone_tail <- head(Mini_Project_stat, n=10)
 pokemone_tail
 
+new_ass_tail <- head(Mini_Project_stat, n=10)
+new_ass_tail
 #displaying the summary
 
 poke_sumary <- summary(Mini_Project_stat)
 poke_sumary
 
+new_ass_sumary <- summary(Mini_Project_stat)
+new_ass_sumary
 
 #use package
 
@@ -61,29 +69,6 @@ Mini_Project_stat %>%
        x = "attack",
        y = " RESULT") +
   theme_minimal()
-
-
-
-# * A `bar plot` for **Species**
-plotdata <-Mini_Project_stat %>%
-  count(attack) %>%
-  mutate(pct = n / sum(n),
-         pctlabel = paste0(round(pct*100), "%"))
-
-# plot the bars as percentages, 
-# in decending order with bar labels
-ggplot(plotdata, 
-       aes(x = reorder(species, -pct),
-           y = pct)) + 
-  geom_bar(stat = "identity", 
-           fill = "cornflowerblue", 
-           color = "black") +
-  geom_text(aes(label = pctlabel), 
-            vjust = -0.25) +
-  scale_y_continuous(labels = percent) +
-  labs(x = "Species", 
-       y = "Percent", 
-       title  = "A bar plot for Species")
 
 
 #========================================================================================================
@@ -148,5 +133,26 @@ for (i in 1:10000) {
   local_govt <- c(local_govt, local_gov)
 }
 #=====================================================================================
+
+install.packages('fakeR')
+library(fakeR)
+
+# Set the seed (optional, for reproducibility)
+set.seed(42)
+
+# Generate random data
+num_records <- 10000
+
+# Create empty data frame to store the generated data
+data <- data.frame(
+  first_name = fakename(num_records),
+  surname = fakename(num_records),
+  age = fakeage(num_records, from = 18, to = 65),
+  sex = sample(c("Male", "Female"), num_records, replace = TRUE),
+  local_government = faker::faker_address(num_records)$city
+)
+
+# Save the data frame as a CSV file
+write.csv(data, file = "random_data.csv", row.names = FALSE)
 
 

@@ -59,24 +59,3 @@ abline(v = obs_diff, col = "red", lwd = 2)
 
 
 #========================================
-install.packages('fakeR')
-library(fakeR)
-
-# Set the seed (optional, for reproducibility)
-set.seed(42)
-
-# Generate random data
-num_records <- 10000
-
-# Create empty data frame to store the generated data
-data <- data.frame(
-  first_name = fakename(num_records),
-  surname = fakename(num_records),
-  age = fakeage(num_records, from = 18, to = 65),
-  sex = sample(c("Male", "Female"), num_records, replace = TRUE),
-  local_government = faker::faker_address(num_records)$city
-)
-
-# Save the data frame as a CSV file
-write.csv(data, file = "random_data.csv", row.names = FALSE)
-
