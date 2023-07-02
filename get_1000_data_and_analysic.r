@@ -74,15 +74,15 @@ Mini_Project_stat %>%
 #========================================================================================================
 # Define a function to generate a random name
 generateRandomName <- function(length) {
-  vowels <- c("a", "e", "i", "o", "u")
-  consonants <- c("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z")
-  
+  firstname <- c("a", "e", "i", "o", "u")
+  surname <- c("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z")
+  ocupation <- c("dee","axe","battle","erer")
   name <- ""
   for (i in 1:length) {
     if (i %% 2 == 0) {
-      name <- paste0(name, sample(vowels, 1))
+      name <- paste0(name, sample(firstname, 1))
     } else {
-      name <- paste0(name, sample(consonants, 1))
+      name <- paste0(name, sample(surname, 1))
     }
   }
   
