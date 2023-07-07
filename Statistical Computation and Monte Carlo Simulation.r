@@ -15,7 +15,7 @@ library(wavethresh)
 library(ggplot2)
 knitr::opts_chunk$set(echo = FALSE)
 #================================================================
-# class work 
+                              #  CLASS WORK
 # Use R as you would a calculator to find numeric answers to the following
 #================================================================
 # variable for question 1.1
@@ -58,7 +58,8 @@ solution_d
 
 
 #================================================================
-#  values for question 1.2
+
+              #  values for question 1.2
 
 # 1.2 Use R to compute the following
 rat <- 0.2
@@ -123,9 +124,10 @@ pig_minus_9_squared <- (pig - pig3)^pig1
 pig_minus_9_squared
 
 #================================================================
-#Bi variate categorical data
+                  #BIVARIATE CATEGORICAL DATA
 
-#first way to perform bivarete analysic perform row blinding
+
+#first way to perform bivarete analysis perform row blinding
 Bivariate <- rbind(c(56,8), c(2,16))
 Bivariate
 #secondly perform column blinding
@@ -133,7 +135,7 @@ Bivariate
 Bivariate1 <- cbind(c(56,2), c(8,16))
 Bivariate1
 
-# second way to perform bivarate analysics and prefer
+                # second way to perform bivarate analysis and prefer
 Seatbelts <- matrix(c(56,2,8,16), nrow=2, ncol =2)
 Seatbelts1 <- addmargins(Seatbelts)
 row_name <- c("Buckled", "unbuckled", "child")
@@ -141,10 +143,8 @@ col_names <- c("Buckled", "unbuckled", "parent")
 
 dimnames(Seatbelts1) <- list(row_name,col_names )
 Seatbelts1
-
-data()
 #================================================================
-#Functions
+                                  #Functions
 
 # f(n) such that = {         n            when n < 2
 #                      f(n-1) + f(n-2)    when n ≥ 2
@@ -179,13 +179,15 @@ ricker <- function(nzero,r, k=1,time=100,from=0,to=time){
 
 
 eg1 <- layout(matrix(1:3, 3, 1))
-
 eg1
+
 eg2 <- ricker(0.1, 1); title("r = 1")
 eg3 <- ricker(0.1, 2); title("r = 2")
 eg4 <- ricker(0.1, 3); title("r = 3")
+
+
 #=====================================
-# from here my code
+                  # from here my code
 ricker <- function(length, scale) {
   t <- seq(-(length-1)/2, (length-1)/2)
   eg1 <- (2 / (sqrt(3 * scale) * pi^(1/4))) * (1 - (t - center)^2 / scale^2) * exp(-(t - center)^2 / (2 * scale^2))
@@ -248,48 +250,47 @@ for (i in 2:length(time)) {
 plot(time, population, type = "l", xlab = "Time", ylab = "Population Size", main = "Nonlinear Model")
 ##################################################################################################
 
-#   Simulations in R
-
-
+                      # SIMULATION IN R
 #################
 #  Ex 1 Compare for instance the following output:
-vecpoisson=rpois(100,5)
-mean(vecpoisson)
-var(vecpoisson)
+vecpoisson <-  rpois(100,5)
+mean0 <- mean(vecpoisson)
+var0 <- var(vecpoisson)
 
 
-#EX1a
-
-#If you do this severally, you get many different values. Why don’t you get
-t#he same answer every time?
+#EX1a  If you do this severally, you get many different values. Why don’t you get
+#the same answer every time?
 set.seed(911)
-vecpoisson=rpois(100,5)
-mean(vecpoisson)
-
+vecpoisson <- rpois(100,5)
+mean1 <- mean(vecpoisson)
+var1 <- var(vecpoisson)
 
 set.seed(911)
-vecpoisson=rpois(100,5)
-mean(vecpoisson)
+vecpoisson <- rpois(100,5)
+mean2 <- mean(vecpoisson)
+var2 <- var(vecpoisson)
+
 
 
 ###################################################
-#### Using the apply function
+                        #### USING THE APPLY FUNCTION
 reps <- 50000
 nexps <- 5
 rate <- 0.1
 set.seed(0)
 system.time(x1 <- replicate(reps, sum(rexp(n = nexps, rate = rate))))
 head(x1)
-
-###     Function apply() cont.. . .
+#############################################################
+                        ###FUNCTION APPLY() CONT.....
 
 # To confirm that this is correct, we can make a histogram or a qqplot of the
 #simulation and compare it to what we know is the truth
 
+############################# LATEST WAY TO WRITE DENSITY
 suppressWarnings({
   ggplot(data.frame(x1), aes(x1))+
-    geom_histogram(aes(y = ..density..))+
-    stat_function(fun = function(x)dgamma(x, shape = nexps, scale =1/rate), color = "red", size = 2)
+    geom_histogram(aes(y = after_stat(density)))+
+    stat_function(fun = function(x)dgamma(x, shape = nexps, scale =1/rate), bins = 30 ,color = "red", size = 2)
   
 })
 
@@ -297,8 +298,21 @@ suppressWarnings({
 system.time(x1 <- sapply(1 :reps, function(i)sum(rexp(n = nexps, rate = rate)))) 
 
 
-################################ HOME WORK 
-#Q1 
+########### BEFORE WAY
+suppressWarnings({
+  ggplot(data.frame(x1), aes(x1))+
+    geom_histogram(aes(y = ..density..))+
+    stat_function(fun = function(x)dgamma(x, shape = nexps, scale =1/rate), bins = 30 ,color = "red", size = 2)
+  
+})
+
+###       b simple apply OR set.seed(0)
+system.time(x1 <- sapply(1 :reps, function(i)sum(rexp(n = nexps, rate = rate)))) 
+
+
+              ##################       HOME WORK
+
+#                   Q1 
 # Set the number of simulations
 reps <- 1000000
 
@@ -316,11 +330,8 @@ probability <- sum(M > 0.75) / reps
 # Output the estimated probability
 probability
 
-
-#===============================
-#Q2
-
-
+#===============================  
+                    #Q2
 # Set the number of simulations
 reps <- 100000
 
@@ -352,7 +363,7 @@ while (probability < target_probability) {
 estimated_n <- n - 1
 estimated_n
 #=============================================
-#Q3
+                      #Q3
 
 # Set the number of simulations
 reps <- 100000
@@ -389,7 +400,7 @@ probability
 
 
 #==================================================================
-#Q4
+                        #Q4
 
 # Set the target variance
 target_variance <- 0.4
@@ -415,7 +426,7 @@ estimated_p <- view$par
 estimated_p
 
 
-################  Generating Random Mixtures of Normal Data
+                    #####  Generating Random Mixtures of Normal Data
 
 
 sampa=rnorm(1000000,0,1)
@@ -442,10 +453,9 @@ plt
 
 # Question c solution
 #Both plots can be used to analyze the modes in the data
-
-
 #================================================================
-#TRY AT HOME WORK
+
+                                      #TRY AT HOME WORK
 
 ##### making 3,000,000 with means separated by 1S
 # Set the number of points
@@ -485,37 +495,48 @@ plt <- ggplot(df, aes(x = data)) +
 
 # Display the plot
 plt
-
-######### Generating normal random variables
-# Generate 1000 samples from the N(0, 1) distribution
+#########
+            ######### GENERATIONG NORMAL RANDOM VARIABLES
+#We will warm up by generating some random normal variables. Generate 1000 samples from the N(0, 1) distribution
 #q1
 samples <- rnorm(1000, 0, 1)
 samples
-
-
-###############
-library(ggplot2)
-
 # Generate 1000 samples from the N(0, 1) distribution
 samples <- rnorm(1000, 0, 1)
 
-#q2
+###############
+#Question 5 Check that these are from N(0, 1) using a quantile-quantile plot
+#(Q-Q plot). Use the statqq() function in the ggplot2 package.
+
 # Create a Q-Q plot using ggplot2
 qq_plot <- ggplot(data.frame(samples), aes(sample = samples)) +
+  xlab("Theoretical Quantiles") +
+  ylab("Sample Quantiles") +
   stat_qq() +
-  stat_qq_line()
+  stat_qq_line() +
+  ggtitle("Q-Q PLOT")
 
 # Display the Q-Q plot
 qq_plot
 
-#q3
-data <- load("C:/Users/Samuel Effiong/Desktop/statistical computing 2 .. sta 418/pratical resource/.RData")
-data
+################################################################
+# Create some example data mystery_samples
+x <- 1:10
+y <- letters[1:10]
+mystery_samples <- data.frame(x, y)
 
+# Save the objects into an .RData file
+save(x, y, mystery_samples, file = "data.RData")
+
+load("data.RData")
+head(mystery_samples)
+
+# method load from previous save Now load data that has been sampled from a "mystery" distribution.
+data <- load("C:/Users/Samuel Effiong/Desktop/statistical computing 2 .. sta 418/pratical resource/.RData")
 head(data)
 
 ####################
-# Probability Calculations cont
+                  # Probability Calculations cont
 ## normal distribution
 x <- c(-2, -2,0,1,2)
 x
@@ -533,7 +554,7 @@ poisson  <- ppois(x,6)
 poisson 
 
 
-##### Probability Calculations cont.
+            ##### Probability Calculations cont.
 
 #Q2  Calculate the following probabilities : Probability that a normal random variable
 #with mean 22 and variance 25
@@ -544,7 +565,7 @@ x <- 24
 probability_density <- dnorm(x, mean, sqrt(variance))
 probability_density
 
-#Q2i 
+    #Q2i 
 
 # lies between 16.2 and 27.5
 between <- pnorm(27.5, 22, sd= 5)-pnorm(16.2, 22, sd=5)
@@ -562,7 +583,7 @@ less
 less_greater <- pnorm(15,22,sd=5)+1-pnorm(25,22,sd=5)
 less_greater
 
-# q3 Probability that in 60 tosses of a fair coin the head comes up
+        # q3 Probability that in 60 tosses of a fair coin the head comes up
 
 #In a fair coin toss, the probability of getting a head (H) or a tail (T) is 0.5 each. To calculate the probability of getting a specific number of heads (r) in 60 tosses, we can use the binomial distribution.
 
@@ -639,10 +660,28 @@ Poisson_Distribution_cal <- qpois(Poisson_Distribution ,6)
 Poisson_Distribution_cal
 
 #=======================================================
-#Sample Skewness and Kurtosis
+                  #Sample Skewness and Kurtosis
 
 #A function R code to compute the sample skewness follows
 skewness = function(x){
   n = length(x)
-  z= (x-sum(x)) /sd(x)(z**3)/n
+  z= (x-sum(x)) /sd(x)*(z**3)/n
 }
+
+###################################################
+      # NORMAL DISTRIBUTION STATISTICAL INFERENCE
+
+# EXAMPLE QUSTIONS  : you take a test and score 85, which sounds great until the professor
+# announces the mean score is 92 with a standard deviation of 8. Then you
+# begin to wonder, how badly did you do? To answer this use the pnorm
+# function in R as follows:
+
+# Solution
+inferential_sta <-  pnorm(85, mean = 92, sd = 8)
+inferential_sta
+
+# EXAMPLE 2 :This means you scored better than 19.1this question looking at the other
+#end of the distribution as well using 1-pnorm.
+
+inferential_sta2 <- 1 - pnorm(85, mean = 92, sd = 8)
+inferential_sta2

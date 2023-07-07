@@ -122,7 +122,7 @@ reg1 <- summary(reg)
 reg1
 
 #============================================= or
-
+# REGRESSION ANALYSIC
 
 # Create a data frame
 data_text <- data.frame(x, y)
@@ -142,3 +142,5 @@ b <- coef(model)[[2]]
 sumarry <- summary(model)
 sumarry
 ####################################################
+
+boxplot(x,y, main ="regrsion data plot" , xlab="x varaible" ,ylab ="y varaible")
