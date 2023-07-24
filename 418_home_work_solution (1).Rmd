@@ -1,0 +1,27 @@
+---
+title: "R Notebook"
+output:
+  word_document: default
+  html_notebook: default
+---
+question 1
+```{r}
+x <- replicate(n = 10000, expr = {max(runif(n = 3, min = 0, max = 1)) > .75})
+mean(x)
+```
+question 3
+```{r}
+p <- replicate(10000, expr = {
+  pvariate <- rpois(n = 21, lambda = 0.5)
+  mu <- mean(pvariate)
+  md <- median(pvariate)
+  mu > md
+})
+mean(p)
+```
+question 2
+```{r}
+
+```
+
+

@@ -12,15 +12,13 @@ getwd()
 rm(list=ls())
 
 #=============================================================================
+# EXCEL approach
 ### let import our table of data from original question as a .csv file
 
 Mini_Project_stat <- read.csv("pokemon.csv",header=TRUE, sep = ",")
 
 new_ass<- read.csv("assignment2.csv", header = TRUE, sep = ",")
 
-# let views our data in a  data frame formed from the csv file
-view <- View(Mini_Project_stat)
-#=====================================================================================================================
 #displaying the head  
 pokemone_head <- head(Mini_Project_stat)
 pokemone_head
@@ -40,7 +38,7 @@ poke_sumary
 
 new_ass_sumary <- summary(Mini_Project_stat)
 new_ass_sumary
-
+#=================================================================================================================================
 #use package
 
 
@@ -50,8 +48,27 @@ library(ggplot2)
 library(pander)
 knitr::opts_chunk$set(echo = FALSE)
 
+# ===========================================================================================================
+#           MANUAL APPROUCH
+first_name <- c("SULE","TAIWO","KABIRU","HENRY","JOHN")
+sur_name <- c("ADOLE","ADEBAYO","HASSAN","JONATHAN","MUHAMMED")
+firstname <- sample(first_name,1000,replace = TRUE)
+surname <- sample(sur_name,1000,replace = TRUE)
+sex <- rep("MALE",1000)
+occupation <- c("electrician","mechanic","nurse","civil servant","trader")
+occupation <- sample(occupation,1000,replace = TRUE)
 
-#* Using **Univariate statistics** to `compare data`  for **species defence and attackr**,
+# the state data set is the USA default data from r
+state <- sample(state.name,1000,replace = TRUE)
+local_govt <- sample(state.region,1000,replace = TRUE)
+age <- sample(30:60,1000,replace = TRUE)
+stipend_USD <- sample(500:1500,1000,replace = TRUE)
+mydata <- data.frame(firstname,surname,sex,occupation,state,local_govt,age,stipend_USD)
+
+head <- head(mydata)
+tail < tail(mydata)
+# ===========================================================================================================
+# Using Uni variate statistics to `compare data`  for species defense and attack
 
 
 Mini_Project_stat %>%
