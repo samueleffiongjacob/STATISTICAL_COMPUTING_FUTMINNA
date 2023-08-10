@@ -313,9 +313,9 @@ num_less_than_zero <- sum(x < 0)
 # Print the result
 print(num_less_than_zero)
 #=====================================================
-To perform the operations, we'll create the "study" dataframe and then calculate the desired statistics. Here's how you can do it step by step in R:
-  
-  ```R
+#To perform the operations, we'll create the "study" dataframe and then calculate the desired statistics.
+#Here's how you can do it step by step in R:
+
 # a) Create the dataframe "study"
 weight <- c(150, 135, 210, 140, 130)
 height <- c(65, 61, 70, 65, 69)
@@ -363,48 +363,40 @@ print(gender_frequency_table)
 print(variance_height_by_gender)
 print(skewness_height)
 print(kurtosis_height)
-```
 
-Please note that in operation v), I assumed you wanted to compute the skewness and kurtosis of the "Height" variable, not "ages" since "ages" were not mentioned in the data provided. Also, we used the `e1071` package to calculate the skewness and kurtosis. If you haven't installed this package, you can do so by running `install.packages("e1071")` before running the above code.
+#Please note that in operation v), I assumed you wanted to compute the skewness and kurtosis of the "Height"
+#variable, not "ages" since "ages" were not mentioned in the data provided. Also, we used the `e1071` package
+#to calculate the skewness and kurtosis. If you haven't installed this package, you can do so by 
+#running `install.packages("e1071")` before running the above code.
 
 #=========================================
-Sure, let's go step by step to model the relationship between the scale of the house over the last 15 months:
+#Sure, let's go step by step to model the relationship between the scale of the house over the last 15 months:
   
   a) Generate a sequence from 1 to 15 and store it in x:
-  
-  ```R
-x <- 1:15
-```
-
+  <- 1:15
 b) Generate a random sample of size 15 between 30 and 100 and store it in y:
-  
-  ```R
 set.seed(123)  # for reproducibility
 y <- runif(15, min = 30, max = 100)
-```
-
 c) Form the equation z = x + y:
-  
-  ```R
 z <- x + y
-```
-
 d) Run a linear regression model of z over y and x:
-  
-  ```R
 model <- lm(z ~ y + x)
 summary(model)
-```
+# The `lm()` function fits a linear regression model to predict z using y and x as predictors. 
+#The `summary()` function provides a summary of the model and its coefficients.
 
-The `lm()` function fits a linear regression model to predict z using y and x as predictors. The `summary()` function provides a summary of the model and its coefficients.
-
-e) Generate 15 random variates from a normal distribution with mean zero and standard deviation 2:
-  
-  ```R
+# 6) Generate 15 random variates from a normal distribution with mean zero and standard deviation 2:
 set.seed(456)  # for reproducibility
 random_variates <- rnorm(15, mean = 0, sd = 2)
-```
+#In this case, `rnorm(15, mean = 0, sd = 2)` generates 15 random numbers from a normal distribution with mean 0 
+#and standard deviation 2.
+#Please note that random sampling and generated variates will differ each time you run the code due
+#to the use of the `set.seed()` function to ensure reproducibility.
+#≈================================
+#To solve 10! / (3! * 7!) in R, you would use the `factorial()` function like so:
 
-In this case, `rnorm(15, mean = 0, sd = 2)` generates 15 random numbers from a normal distribution with mean 0 and standard deviation 2.
+# Calculate the result
+result <- factorial(10) / (factorial(3) * factorial(7))
 
-Please note that random sampling and generated variates will differ each time you run the code due to the use of the `set.seed()` function to ensure reproducibility.
+# Print the result
+print(result)
