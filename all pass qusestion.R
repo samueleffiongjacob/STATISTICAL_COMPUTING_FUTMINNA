@@ -370,29 +370,33 @@ print(kurtosis_height)
 #running `install.packages("e1071")` before running the above code.
 
 #=========================================
-#Sure, let's go step by step to model the relationship between the scale of the house over the last 15 months:
-  
-  a) Generate a sequence from 1 to 15 and store it in x:
-  <- 1:15
-b) Generate a random sample of size 15 between 30 and 100 and store it in y:
+
+#Sure, let's go step by step to model the relationship between the scale of the house over 
+#the last 15 months:
+# a) Generate a sequence from 1 to 15 and store it in 
+x: 1:15
+# b) Generate a random sample of size 15 between 30 and 100 and store it in y:
 set.seed(123)  # for reproducibility
 y <- runif(15, min = 30, max = 100)
-c) Form the equation z = x + y:
+# c) Form the equation z = x + y:
 z <- x + y
-d) Run a linear regression model of z over y and x:
+# d) Run a linear regression model of z over y and x:
 model <- lm(z ~ y + x)
 summary(model)
 # The `lm()` function fits a linear regression model to predict z using y and x as predictors. 
 #The `summary()` function provides a summary of the model and its coefficients.
 
-# 6) Generate 15 random variates from a normal distribution with mean zero and standard deviation 2:
+# 6) Generate 15 random variate from a normal distribution with mean zero and standard deviation 2:
 set.seed(456)  # for reproducibility
 random_variates <- rnorm(15, mean = 0, sd = 2)
-#In this case, `rnorm(15, mean = 0, sd = 2)` generates 15 random numbers from a normal distribution with mean 0 
-#and standard deviation 2.
+
+#In this case, `rnorm(15, mean = 0, sd = 2)` generates 15 random numbers from a normal 
+#distribution with mean 0 and standard deviation 2.
+
 #Please note that random sampling and generated variates will differ each time you run the code due
 #to the use of the `set.seed()` function to ensure reproducibility.
-#≈================================
+
+#================================
 #To solve 10! / (3! * 7!) in R, you would use the `factorial()` function like so:
 
 # Calculate the result
@@ -400,3 +404,5 @@ result <- factorial(10) / (factorial(3) * factorial(7))
 
 # Print the result
 print(result)
+#=========================================================================================================
+
